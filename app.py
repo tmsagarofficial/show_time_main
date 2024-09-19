@@ -2,13 +2,16 @@ import requests
 from flask import Flask, request, jsonify, render_template
 from pymongo import MongoClient
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-# MongoDB setup
-client = MongoClient('mongodb://localhost:27017/')
-db = client['cybersecurity_club']
+# MongoDB Atlas setup
+# Replace <username>, <password>, <cluster>, and <dbname> with your own credentials and details
+MONGO_URI = "mongodb+srv://pilot:H45HVAU7T@showtime.qoo3i.mongodb.net/?retryWrites=true&w=majority&appName=showTime"
+client = MongoClient(MONGO_URI)
+db = client['cybersecurity_club']  # Replace with your actual database name
 collection = db['registrations']
 
 # Fetch approximate geolocation from IP
